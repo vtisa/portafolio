@@ -1,0 +1,21 @@
+body {
+  background: #090909;
+}
+
+.bg-blac {
+  border: 3px solid #090909; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); 
+}
+
+.card-project:hover {
+  border: 1px solid #030303;
+  box-shadow: 0 4px 8px rgba(7, 7, 10, 0.5);
+  cursor: pointer;
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 3px solid #000000;
+}

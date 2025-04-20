@@ -1,0 +1,64 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+  <div class="container">
+    <a class="navbar-brand fw-bold fst-italic" href="/">IV</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'blog:posts' %}">Blog</a>
+        </li>
+        
+        <li class="nav-item d-flex align-items-center">
+          <button id="theme-toggle" class="btn btn-outline-light btn-sm" data-bs-theme="dark">🌙</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+  @media (max-width: 991.98px) {
+    #navbarNav .navbar-nav {
+      text-align: center;
+      width: 100%;
+    }
+    #navbarNav .nav-item {
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const themeToggle = document.getElementById("theme-toggle");
+    const root = document.documentElement;
+    const body = document.body;
+    const currentTheme = localStorage.getItem("theme") || "dark";
+
+    root.setAttribute("data-bs-theme", currentTheme);
+    body.classList.toggle("bg-dark", currentTheme === "dark");
+    body.classList.toggle("text-light", currentTheme === "dark");
+    body.classList.toggle("bg-light", currentTheme === "light");
+    body.classList.toggle("text-dark", currentTheme === "light");
+
+    themeToggle.innerText = currentTheme === "dark" ? "🌙" : "☀️";
+
+    themeToggle.addEventListener("click", function () {
+      const newTheme = root.getAttribute("data-bs-theme") === "dark" ? "light" : "dark";
+      root.setAttribute("data-bs-theme", newTheme);
+      localStorage.setItem("theme", newTheme);
+
+      body.classList.toggle("bg-dark", newTheme === "dark");
+      body.classList.toggle("text-light", newTheme === "dark");
+      body.classList.toggle("bg-light", newTheme === "light");
+      body.classList.toggle("text-dark", newTheme === "light");
+
+      themeToggle.innerText = newTheme === "dark" ? "🌙" : "☀️";
+    });
+  });
+</script>
